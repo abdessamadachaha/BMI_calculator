@@ -14,31 +14,15 @@ class Inputpage extends StatefulWidget {
 }
 
 class _InputpageState extends State<Inputpage> {
-   
-    Color maleCardColor = inactiveCard;
-    Color femaleCardColor = inactiveCard;
+  Color maleCardColor = inactiveCard;
+  Color femaleCardColor = inactiveCard;
+  Gendre? selectGendre;
 
-    void updateGendre(Gendre sex) {
-      if (sex == Gendre.Male) {
-        if (maleCardColor == inactiveCard) {
-          maleCardColor = activeCard;
-          femaleCardColor = inactiveCard;
-        } else {
-          maleCardColor = inactiveCard;
-        }
-      } else if (sex == Gendre.Female) {
-        if (femaleCardColor == inactiveCard) {
-          femaleCardColor = activeCard;
-          maleCardColor = inactiveCard;
-        } else {
-          femaleCardColor = inactiveCard;
-        }
-      }
-    }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
 
     return Scaffold(
       backgroundColor: colorScheme.background,
@@ -63,19 +47,18 @@ class _InputpageState extends State<Inputpage> {
                     padding: EdgeInsets.all(15.0),
                     child: GestureDetector(
                       onTap: () {
-                          setState(() {
-                            updateGendre(Gendre.Male);
-                          });
-                        },
+                        setState(() {
+                          selectGendre = Gendre.Male;
+                        });
+                      },
                       child: Reusablecard(
-                        color: maleCardColor,
+                        color: selectGendre == Gendre.Male ? activeCard: inactiveCard,
                         cardChild: IntentSex(
                           color: colorScheme.onSurface,
                           sex: Icons.male,
                           nameSex: 'MALE',
                         ),
                       ),
-                      
                     ),
                   ),
                 ),
@@ -84,13 +67,13 @@ class _InputpageState extends State<Inputpage> {
                   child: Padding(
                     padding: EdgeInsets.all(15.0),
                     child: GestureDetector(
-                       onTap: () {
+                      onTap: () {
                         setState(() {
-                          updateGendre(Gendre.Female);
+                          selectGendre = Gendre.Female;
                         });
                       },
                       child: Reusablecard(
-                        color: femaleCardColor,
+                        color: selectGendre == Gendre.Female ? activeCard : inactiveCard,
                         cardChild: IntentSex(
                           color: colorScheme.onSurface,
                           sex: Icons.female,
