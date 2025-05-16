@@ -1,0 +1,3 @@
+enum Gendre {
+  Male, Female
+}

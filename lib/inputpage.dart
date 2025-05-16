@@ -1,5 +1,6 @@
 import 'package:bmi/IntentSex.dart';
 import 'package:bmi/Reusabledcard.dart';
+import 'package:bmi/gendre.dart';
 import 'package:flutter/material.dart';
 
 const inactiveCard = Color(0Xff111328);
@@ -17,15 +18,15 @@ class _InputpageState extends State<Inputpage> {
     Color maleCardColor = inactiveCard;
     Color femaleCardColor = inactiveCard;
 
-    void updateGendre(String sex) {
-      if (sex == 'male') {
+    void updateGendre(Gendre sex) {
+      if (sex == Gendre.Male) {
         if (maleCardColor == inactiveCard) {
           maleCardColor = activeCard;
           femaleCardColor = inactiveCard;
         } else {
           maleCardColor = inactiveCard;
         }
-      } else if (sex == 'female') {
+      } else if (sex == Gendre.Female) {
         if (femaleCardColor == inactiveCard) {
           femaleCardColor = activeCard;
           maleCardColor = inactiveCard;
@@ -63,7 +64,7 @@ class _InputpageState extends State<Inputpage> {
                     child: GestureDetector(
                       onTap: () {
                           setState(() {
-                            updateGendre('male');
+                            updateGendre(Gendre.Male);
                           });
                         },
                       child: Reusablecard(
@@ -85,7 +86,7 @@ class _InputpageState extends State<Inputpage> {
                     child: GestureDetector(
                        onTap: () {
                         setState(() {
-                          updateGendre('female');
+                          updateGendre(Gendre.Female);
                         });
                       },
                       child: Reusablecard(
